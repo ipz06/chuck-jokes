@@ -1,10 +1,5 @@
-<script>
+<script setup>
 import { RouterLink } from 'vue-router'
-
-export default {
-  name: 'NavigationBar',
-  components: { RouterLink }
-}
 </script>
 
 <template>
