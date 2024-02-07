@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
   <header class="d-flex justify-content-between align-items-center fs-5 p-5 fw-bold">
     <RouterLink to="/">
-      <img src="../assets/logo.png" alt="Logo" width="80" />
+      <img src="../assets/logo.png" alt="Logo" width="60" />
     </RouterLink>
     <nav class="d-flex justify-content-between gap-5">
       <RouterLink to="/" class="link-style">Home</RouterLink>

@@ -28,9 +28,9 @@ async function getCategory() {
 }
 
 function selectCategory(selectedCategory) {
-  category.value = selectedCategory;
-  console.log('category-value', category.value);
-  emit('handle-category-change', category.value);
+  category.value = selectedCategory
+  console.log('category-value', category.value)
+  emit('handle-category-change', category.value)
 }
 
 onMounted(() => {

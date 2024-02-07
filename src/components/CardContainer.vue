@@ -14,23 +14,33 @@
 <script setup>
 import { computed } from 'vue'
 import IconStar from '@/components/IconStar.vue'
+import { useFavoriteStore } from '@/stores/favorites.js'
+import { storeToRefs } from 'pinia'
 const props = defineProps(['id', 'joke', 'result', 'errorMessage'])
 // const emit = defineEmits(['remove-favorites'])
-
+const store = useFavoriteStore()
+const { favoriteJokes } = storeToRefs(store)
+const { addToFavorites, removeFromFavorites } = store
 const isFavoriteCheck = computed(() => {
-  return 'true;'
+  return favoriteJokes.value.some((jokeObj) => jokeObj.id === props.id)
   // return this.$store.state.favoriteJokes.some(
   //     (jokesObj) => jokesObj.id === this.id
   // );
 })
 
-const toggleFav = (id) => {
-  console.log("joke:", props.joke)
+function toggleFav() {
+  console.log('joke:', props.joke)
   if (!isFavoriteCheck.value) {
-    this.$store.commit('addToFavorites', this.result)
+    console.log("isFavorite", isFavoriteCheck);
+    console.log("favoritesJokes:", favoriteJokes.value)
+
+    addToFavorites(props.result)
   } else {
-    this.$store.commit('removeFromFavorites', id)
-    this.favorites = this.$store.state.favoriteJokes
+    removeFromFavorites(props.id)
   }
+
+
+  // this.$store.commit('removeFromFavorites', id)
+  // this.favorites = this.$store.state.favoriteJokes
 }
 </script>
