@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="flex flex-column my-3">
     <h1 class="text-white mb-1 mt-5">Favorites view</h1>
-    <section v-if="updatedFavorites.length !== 0">
-      <!--    <p class="text-white">{{ favorites }}</p>-->
-      <!--    <p class="text-white">{{ updatedFavorites }}</p>-->
+    <div v-if="updatedFavorites.length !== 0">
       <CardContainer
           v-for="favorite of updatedFavorites"
           :key="favorite.id"
@@ -11,20 +9,19 @@
           :id="favorite.id"
           :result="favorite"
       />
-    </section>
+    </div>
     <h2 v-else class="text-light mt-5">There is no selected jokes!</h2>
   </div>
 
 </template>
 
 <script setup>
-import CardContainer from '@/components/CardContainer.vue'
-import { useFavoriteStore } from '@/stores/favorites.js'
-import { storeToRefs } from 'pinia'
-import {computed} from 'vue'
-const store = useFavoriteStore()
-const { favoriteJokes } = storeToRefs(store)
+import CardContainer from '@/components/CardContainer.vue';
+import { useFavoriteStore } from '@/stores/favorites.js';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
+const store = useFavoriteStore();
+const { favoriteJokes } = storeToRefs(store);
 
-const updatedFavorites = computed(() => favoriteJokes.value );
-
+const updatedFavorites = computed(() => favoriteJokes.value);
 </script>

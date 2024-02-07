@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <template>
   <header class="d-flex justify-content-between align-items-center fs-5 p-5 fw-bold">
     <RouterLink to="/">
@@ -14,3 +10,8 @@ import { RouterLink } from 'vue-router'
     </nav>
   </header>
 </template>
+
+<script setup>
+import { RouterLink } from 'vue-router'
+</script>
+

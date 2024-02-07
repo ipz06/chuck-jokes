@@ -5,6 +5,7 @@
 <script setup>
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
+import { URL_GET_JOKE } from '@/common/constants.js'
 
 const errorMsg = ref('')
 const emit = defineEmits(['joke-object', 'error-message'])
@@ -13,15 +14,11 @@ const props = defineProps({
 })
 
 async function getJokes(category) {
-  let url
-  if (!category) {
-    url = `https://api.chucknorris.io/jokes/random`
-  } else {
-    url = `https://api.chucknorris.io/jokes/random?category=${category}`
-  }
 
   try {
-    const response = await axios.get(url)
+    const response = await axios.get(
+      !category ? URL_GET_JOKE : `${URL_GET_JOKE}?category=${category}`
+    )
 
     emit('joke-object', response.data)
   } catch (e) {

@@ -8,28 +8,27 @@
 </template>
 
 <script setup>
-import axios from 'axios'
-import { ref, onMounted } from 'vue'
+import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import {URL_GET_CATEGORY} from "@/common/constants.js";
 
-const emit = defineEmits(['handle-category-change'])
-const categories = ref([])
+const emit = defineEmits(['handle-category-change']);
+const categories = ref([]);
 
-const errorMsg = ref('')
-const category = ref('')
+const errorMsg = ref('');
+const category = ref('');
 
 async function getCategory() {
   try {
-    const response = await axios.get('https://api.chucknorris.io/jokes/categories')
-    categories.value = response.data
-    console.log('CHeck this:', categories.value)
+    const response = await axios.get(URL_GET_CATEGORY);
+    categories.value = response.data;
+
   } catch (error) {
-    errorMsg.value = 'Error retrieving category!'
+    errorMsg.value = 'Error retrieving category!';
   }
 }
-
 function selectCategory(selectedCategory) {
-  category.value = selectedCategory
-  console.log('category-value', category.value)
+  category.value = selectedCategory;
   emit('handle-category-change', category.value)
 }
 
