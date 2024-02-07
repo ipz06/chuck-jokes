@@ -16,31 +16,38 @@ import { computed } from 'vue'
 import IconStar from '@/components/IconStar.vue'
 import { useFavoriteStore } from '@/stores/favorites.js'
 import { storeToRefs } from 'pinia'
-const props = defineProps(['id', 'joke', 'result', 'errorMessage'])
-// const emit = defineEmits(['remove-favorites'])
-const store = useFavoriteStore()
-const { favoriteJokes } = storeToRefs(store)
-const { addToFavorites, removeFromFavorites } = store
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
+  },
+  joke: {
+    type: String,
+    required: true,
+  },
+  result: {
+    type: Object,
+    required: true
+  },
+  errorMessage: {
+    type: String,
+  },
+})
+
+const store = useFavoriteStore();
+const { favoriteJokes } = storeToRefs(store);
+const { addToFavorites, removeFromFavorites } = store;
+
 const isFavoriteCheck = computed(() => {
   return favoriteJokes.value.some((jokeObj) => jokeObj.id === props.id)
-  // return this.$store.state.favoriteJokes.some(
-  //     (jokesObj) => jokesObj.id === this.id
-  // );
 })
 
 function toggleFav() {
   console.log('joke:', props.joke)
   if (!isFavoriteCheck.value) {
-    console.log("isFavorite", isFavoriteCheck);
-    console.log("favoritesJokes:", favoriteJokes.value)
-
-    addToFavorites(props.result)
+    addToFavorites(props.result);
   } else {
-    removeFromFavorites(props.id)
+    removeFromFavorites(props.id);
   }
-
-
-  // this.$store.commit('removeFromFavorites', id)
-  // this.favorites = this.$store.state.favoriteJokes
 }
 </script>
