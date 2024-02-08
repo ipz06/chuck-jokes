@@ -14,7 +14,6 @@ const props = defineProps({
 })
 
 async function getJokes(category) {
-
   try {
     const response = await axios.get(
       !category ? URL_GET_JOKE : `${URL_GET_JOKE}?category=${category}`
@@ -28,6 +27,6 @@ async function getJokes(category) {
 }
 
 onMounted(() => {
-  getJokes(props.category)
+  getJokes()
 })
 </script>
