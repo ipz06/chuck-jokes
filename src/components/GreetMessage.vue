@@ -8,4 +8,3 @@
 <script setup>
 const props = defineProps(['msgFirst', 'msgSecond'])
 </script>
-

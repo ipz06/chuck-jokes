@@ -1,5 +1,5 @@
 <template>
-  <div class="card-joke">
+  <div>
     <p>{{ joke }}</p>
     <h3 v-if="errorMessage">{{ errorMessage }}</h3>
     <IconStar
@@ -18,13 +18,13 @@ import { useFavoriteStore } from '@/stores/favorites.js'
 import { storeToRefs } from 'pinia'
 const props = defineProps({
   id: {
-    type: String,
+    type: String
   },
   joke: {
-    type: String,
+    type: String
   },
   result: {
-    type: Object,
+    type: Object
   },
   errorMessage: {
     type: String

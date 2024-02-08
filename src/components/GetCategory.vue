@@ -18,8 +18,8 @@ const categories = ref([])
 const errorMsg = ref('')
 const category = ref('')
 
-function handleFirstCapitalLetter (category) {
-   return category.slice(0, 1).toUpperCase() + category.substring(1)
+function handleFirstCapitalLetter(category) {
+  return category.slice(0, 1).toUpperCase() + category.substring(1)
 }
 
 async function getCategories() {

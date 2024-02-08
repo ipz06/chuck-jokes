@@ -1,8 +1,12 @@
 <template>
   <div class="flex flex-column my-3">
     <h1 class="text-white mb-1 mt-5">Favorites view</h1>
-    <div v-if="updatedFavorites.length !== 0">
+    <div
+      v-if="updatedFavorites.length !== 0"
+      class="d-flex justify-content-around flex-row-reverse align-content-center flex-wrap m-5"
+    >
       <CardContainer
+        class="favorite-card-joke"
         v-for="favorite of updatedFavorites"
         :key="favorite.id"
         :joke="favorite.value"

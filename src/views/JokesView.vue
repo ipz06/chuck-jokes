@@ -3,6 +3,7 @@
     <GetCategory class="button-get-category me-5" @handle-category-change="handleCategoryChange" />
     <GetJoke @joke-object="getJokeObj" @error-message="getErrorMessage" :category="category" />
     <CardContainer
+      class="card-joke"
       :joke="result.resultFromResponse.value"
       :id="result.resultFromResponse.id"
       :result="result.resultFromResponse"
