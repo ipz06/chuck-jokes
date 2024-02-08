@@ -12,41 +12,38 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import IconStar from '@/components/IconStar.vue';
-import { useFavoriteStore } from '@/stores/favorites.js';
-import { storeToRefs } from 'pinia';
+import { computed } from 'vue'
+import IconStar from '@/components/IconStar.vue'
+import { useFavoriteStore } from '@/stores/favorites.js'
+import { storeToRefs } from 'pinia'
 const props = defineProps({
   id: {
     type: String,
-    required: true
   },
   joke: {
     type: String,
-    required: true
   },
   result: {
     type: Object,
-    required: true
   },
   errorMessage: {
     type: String
   }
 })
 
-const store = useFavoriteStore();
-const { favoriteJokes } = storeToRefs(store);
-const { addToFavorites, removeFromFavorites } = store;
+const store = useFavoriteStore()
+const { favoriteJokes } = storeToRefs(store)
+const { addToFavorites, removeFromFavorites } = store
 
 const isFavoriteCheck = computed(() => {
-  return favoriteJokes.value.some((jokeObj) => jokeObj.id === props.id);
+  return favoriteJokes.value.some((jokeObj) => jokeObj.id === props.id)
 })
 
 function toggleFav() {
   if (!isFavoriteCheck.value) {
-    addToFavorites(props.result);
+    addToFavorites(props.result)
   } else {
-    removeFromFavorites(props.id);
+    removeFromFavorites(props.id)
   }
 }
 </script>
