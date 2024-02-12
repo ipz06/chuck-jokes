@@ -13,7 +13,7 @@ export const useFavoriteStore = defineStore('favorites', () => {
   function addToFavorites(jokeObject) {
     const isUnique = favoriteJokes.value.every((joke) => joke.id !== jokeObject.id)
     if (isUnique) {
-      favoriteJokes.value.unshift(jokeObject)
+      favoriteJokes.value.push(jokeObject)
       updateLocalStorage()
     }
   }
