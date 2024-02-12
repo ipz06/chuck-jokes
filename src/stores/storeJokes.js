@@ -7,6 +7,7 @@ export const useFavoriteStore = defineStore('favorites', () => {
   const category = ref('')
   const resultJokeObject = ref({});
   const errorMessage = ref('')
+  const isLoading = ref(false);
   function updateLocalStorage() {
     localStorage.setItem('favorites', JSON.stringify(favoriteJokes.value))
   }
@@ -28,6 +29,7 @@ export const useFavoriteStore = defineStore('favorites', () => {
     removeFromFavorites,
     category,
     resultJokeObject,
-    errorMessage
+    errorMessage,
+    isLoading
   }
 })
