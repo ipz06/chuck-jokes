@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-
 import { onMounted } from 'vue'
 import useGetJoke from '@/hook/useGetJoke.js'
 import { useFavoriteStore } from '@/stores/storeJokes.js'
@@ -13,8 +12,8 @@ const store = useFavoriteStore()
 const { category } = storeToRefs(store)
 const { getJokes } = useGetJoke()
 
-function handleGetJoke (category) {
-  getJokes(category.value);
+function handleGetJoke(category) {
+  getJokes(category.value)
 }
 
 onMounted(() => {

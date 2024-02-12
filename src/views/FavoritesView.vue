@@ -24,9 +24,9 @@ import { computed } from 'vue'
 const store = useFavoriteStore()
 const { favoriteJokes } = storeToRefs(store)
 const updatedFavorites = computed(() => {
- return favoriteJokes.value
+  return favoriteJokes.value
 })
- defineProps({
+defineProps({
   jokeObj: {
     type: Object
   }

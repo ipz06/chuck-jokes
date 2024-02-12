@@ -5,9 +5,9 @@ import { LOCAL_STORAGE_GET_DATA } from '@/common/constants.js'
 export const useFavoriteStore = defineStore('favorites', () => {
   const favoriteJokes = ref(LOCAL_STORAGE_GET_DATA ? LOCAL_STORAGE_GET_DATA : [])
   const category = ref('')
-  const resultJokeObject = ref({});
+  const resultJokeObject = ref({})
   const errorMessage = ref('')
-  const isLoading = ref(false);
+  const isLoading = ref(false)
   function updateLocalStorage() {
     localStorage.setItem('favorites', JSON.stringify(favoriteJokes.value))
   }

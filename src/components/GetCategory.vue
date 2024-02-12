@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-
 import { onMounted } from 'vue'
 import useGetCategory from '@/hook/useGetCategory.js'
 import { useFavoriteStore } from '@/stores/storeJokes.js'
