@@ -1,39 +1,28 @@
 <template>
   <div class="joke-wrapper">
-    <GetCategory class="button-get-category me-5" @handle-category-change="handleCategoryChange" />
-    <GetJoke @joke-object="getJokeObj" @error-message="getErrorMessage" :category="category" />
-    <CardContainer
-      class="card-joke"
-      :joke="result.resultFromResponse.value"
-      :id="result.resultFromResponse.id"
-      :result="result.resultFromResponse"
-      :error-message="errorMsg"
-    />
+    <GetCategory class="button-get-category me-5" />
+    <GetJoke />
+    <CardContainer class="card-joke" :joke-obj="resultJokeObject" :error-message="errorMessage" />
   </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+
 import GetJoke from '@/components/GetJoke.vue'
 import CardContainer from '@/components/CardContainer.vue'
 import GetCategory from '@/components/GetCategory.vue'
+import {useFavoriteStore} from "@/stores/storeJokes.js";
+import {storeToRefs} from "pinia";
 
-const category = ref('')
-const result = reactive({
-  resultFromResponse: {}
+const store = useFavoriteStore()
+const { resultJokeObject, errorMessage } = storeToRefs(store)
+
+ defineProps({
+  jokeObj: {
+    type: Object
+  },
+  errorMessage: {
+    type: String
+  }
 })
-const errorMsg = ref('')
-
-const handleCategoryChange = (selectedCategory) => {
-  category.value = selectedCategory
-}
-
-const getJokeObj = (response) => {
-  result.resultFromResponse = { ...response }
-  return result.resultFromResponse
-}
-
-const getErrorMessage = (message) => {
-  errorMsg.value = message
-}
 </script>

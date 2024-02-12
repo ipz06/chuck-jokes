@@ -1,29 +1,31 @@
 <template>
   <div>
-    <p>{{ joke }}</p>
-    <h3 v-if="errorMessage">{{ errorMessage }}</h3>
+    <Card :jokeValue="jokeObj.value" :error-message="errorMessage" />
     <IconStar
       @click="toggleFav"
       :iconColor="isFavoriteCheck ? '#79c700' : 'black'"
       class="mt-4"
-      :selectedId="id"
+      :selectedId="jokeObj.id"
     />
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import Card from '@/components/SimpleCard.vue'
+
 import IconStar from '@/components/IconStar.vue'
-import { useFavoriteStore } from '@/stores/favorites.js'
+
+import { useFavoriteStore } from '@/stores/storeJokes.js'
 import { storeToRefs } from 'pinia'
+
+const store = useFavoriteStore()
+
+const { favoriteJokes } = storeToRefs(store)
+const { addToFavorites, removeFromFavorites } = store
+
 const props = defineProps({
-  id: {
-    type: String
-  },
-  joke: {
-    type: String
-  },
-  result: {
+  jokeObj: {
     type: Object
   },
   errorMessage: {
@@ -31,19 +33,18 @@ const props = defineProps({
   }
 })
 
-const store = useFavoriteStore()
-const { favoriteJokes } = storeToRefs(store)
-const { addToFavorites, removeFromFavorites } = store
-
 const isFavoriteCheck = computed(() => {
-  return favoriteJokes.value.some((jokeObj) => jokeObj.id === props.id)
+  return favoriteJokes.value.some((joke) => {
+    // debugger
+    return joke.id === props.jokeObj.id
+  })
 })
 
 function toggleFav() {
   if (!isFavoriteCheck.value) {
-    addToFavorites(props.result)
+    addToFavorites(props.jokeObj)
   } else {
-    removeFromFavorites(props.id)
+    removeFromFavorites(props.jokeObj.id)
   }
 }
 </script>
