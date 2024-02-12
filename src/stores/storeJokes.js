@@ -4,13 +4,16 @@ import { LOCAL_STORAGE_GET_DATA } from '@/common/constants.js'
 
 export const useFavoriteStore = defineStore('favorites', () => {
   const favoriteJokes = ref(LOCAL_STORAGE_GET_DATA ? LOCAL_STORAGE_GET_DATA : [])
+  const category = ref('')
+  const resultJokeObject = ref({});
+  const errorMessage = ref('')
   function updateLocalStorage() {
     localStorage.setItem('favorites', JSON.stringify(favoriteJokes.value))
   }
   function addToFavorites(jokeObject) {
     const isUnique = favoriteJokes.value.every((joke) => joke.id !== jokeObject.id)
     if (isUnique) {
-      favoriteJokes.value.push(jokeObject)
+      favoriteJokes.value.unshift(jokeObject)
       updateLocalStorage()
     }
   }
@@ -19,5 +22,12 @@ export const useFavoriteStore = defineStore('favorites', () => {
     updateLocalStorage()
   }
 
-  return { favoriteJokes, addToFavorites, removeFromFavorites }
+  return {
+    favoriteJokes,
+    addToFavorites,
+    removeFromFavorites,
+    category,
+    resultJokeObject,
+    errorMessage
+  }
 })

@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1 class="title-size">{{ props.msgFirst }}</h1>
+    <p class="title-size">{{ props.msgFirst }}</p>
     <h1 class="title-size">{{ props.msgSecond }}</h1>
   </div>
 </template>
